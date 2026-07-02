@@ -34,11 +34,6 @@ class AnnouncementEntity extends DocumentEntity
         return 'bs.megaphone';
     }
 
-    public function section(): string
-    {
-        return __('Documents');
-    }
-
     public function sort(): int
     {
         return 5100;

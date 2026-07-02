@@ -7,6 +7,8 @@ namespace CmsOrbit\Announcement;
 use CmsOrbit\Announcement\Entities\AnnouncementEntity;
 use CmsOrbit\Core\Foundation\Entity\EntityRegistry;
 use CmsOrbit\Core\Foundation\OrbitServiceProvider;
+use CmsOrbit\Core\Support\Facades\Orbit;
+use CmsOrbit\Core\Support\Locale;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -33,8 +35,11 @@ class AnnouncementServiceProvider extends OrbitServiceProvider
 
     public function boot(): void
     {
+        Orbit::registerSection('documents', 'bs.file-earmark-text', __('Documents'), 5000);
+
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadJsonTranslationsFrom(__DIR__.'/../resources/lang');
+        Locale::registerPath(__DIR__.'/../resources/lang');
 
         Route::middleware('web')->group(__DIR__.'/../routes/web.php');
     }
