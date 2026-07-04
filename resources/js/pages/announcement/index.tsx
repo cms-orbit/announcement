@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { useT } from '@cms-orbit/core/lib/i18n';
 
 interface AnnouncementListItem {
     id: number;
@@ -26,16 +27,18 @@ interface AnnouncementIndexProps {
 }
 
 export default function AnnouncementIndex({ announcements }: AnnouncementIndexProps) {
+    const t = useT();
+
     return (
         <>
-            <Head title="공지사항" />
+            <Head title={t('Announcements')} />
             <div className="mx-auto max-w-3xl px-6 py-12">
                 <h1 className="mb-8 text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
-                    공지사항
+                    {t('Announcements')}
                 </h1>
 
                 {announcements.data.length === 0 ? (
-                    <p className="text-neutral-500">등록된 공지사항이 없습니다.</p>
+                    <p className="text-neutral-500">{t('No announcements have been posted yet.')}</p>
                 ) : (
                     <ul className="divide-y divide-neutral-200 dark:divide-neutral-800">
                         {announcements.data.map((announcement) => (
@@ -48,7 +51,7 @@ export default function AnnouncementIndex({ announcements }: AnnouncementIndexPr
                                         <div className="flex items-center gap-2">
                                             {announcement.is_notice && (
                                                 <span className="rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">
-                                                    공지
+                                                    {t('Notice')}
                                                 </span>
                                             )}
                                             <span className="font-medium text-neutral-900 group-hover:underline dark:text-neutral-100">
@@ -63,7 +66,7 @@ export default function AnnouncementIndex({ announcements }: AnnouncementIndexPr
                                     </div>
                                     <div className="shrink-0 text-right text-xs text-neutral-400">
                                         <div>{announcement.public_at?.slice(0, 10)}</div>
-                                        <div>조회 {announcement.read_count}</div>
+                                        <div>{t('Views :count', { count: announcement.read_count })}</div>
                                     </div>
                                 </Link>
                             </li>

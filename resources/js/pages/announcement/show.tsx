@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { useT } from '@cms-orbit/core/lib/i18n';
 
 interface AnnouncementDetail {
     id: number;
@@ -16,15 +17,17 @@ interface AnnouncementShowProps {
 }
 
 export default function AnnouncementShow({ announcement }: AnnouncementShowProps) {
+    const t = useT();
+
     return (
         <>
-            <Head title={announcement.title ?? '공지사항'} />
+            <Head title={announcement.title ?? t('Announcements')} />
             <article className="mx-auto max-w-3xl px-6 py-12">
                 <Link
                     href="/announcements"
                     className="mb-6 inline-block text-sm text-neutral-500 hover:underline"
                 >
-                    &larr; 목록으로
+                    &larr; {t('Back to list')}
                 </Link>
 
                 <h1 className="mb-2 text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
@@ -32,7 +35,7 @@ export default function AnnouncementShow({ announcement }: AnnouncementShowProps
                 </h1>
                 <div className="mb-8 flex items-center gap-3 text-xs text-neutral-400">
                     <span>{announcement.public_at?.slice(0, 16)}</span>
-                    <span>조회 {announcement.read_count}</span>
+                    <span>{t('Views :count', { count: announcement.read_count })}</span>
                 </div>
 
                 {announcement.content && (
