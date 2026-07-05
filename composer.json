@@ -1,6 +1,6 @@
 {
     "name": "cms-orbit/announcement",
-    "version": "4.0.0-beta5",
+    "version": "4.0.0",
     "description": "CMS Orbit announcement: document-based announcement content type for the Orbit admin engine.",
     "keywords": [
         "laravel",
