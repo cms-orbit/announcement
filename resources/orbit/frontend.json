@@ -1,0 +1,14 @@
+{
+    "alias": "@cms-orbit/announcement",
+    "jsPath": "resources/js",
+    "pages": [
+        {
+            "component": "announcement/index",
+            "export": "pages/announcement/index"
+        },
+        {
+            "component": "announcement/show",
+            "export": "pages/announcement/show"
+        }
+    ]
+}

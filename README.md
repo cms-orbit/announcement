@@ -21,6 +21,17 @@ php artisan migrate
 
 패키지는 `cms-orbit/core`를 의존하며, 설치 시 문서 섹션과 엔티티 등록을 함께 연결합니다.
 
+## 호스트 설정
+
+| 작업 | 필수 여부 |
+| --- | --- |
+| `composer require cms-orbit/announcement` + `php artisan migrate` | **필수** |
+| `php artisan orbit:frontend-sync` | **필수** (Core 설치 시 `orbit:install`이 이미 실행했다면 생략 가능) |
+| Inertia 브리지 TSX 수동 작성 | **불필요** — sync 명령이 `announcement/index`, `announcement/show` 생성 |
+| Vite `@cms-orbit/announcement` alias | **불필요** — sync 명령이 주입 |
+
+관리자 CRUD·공개 라우트·번역은 패키지 Service Provider가 자동 등록합니다. 호스트 `routes/web.php` 수정은 필요하지 않습니다.
+
 ## 빠른 시작
 
 ### 1. 관리자에서 공지 관리
@@ -42,9 +53,9 @@ php artisan migrate
 /announcements/{slug}
 ```
 
-### 3. Inertia 페이지 브리지
+### 3. Inertia 페이지 (자동)
 
-호스트 앱에서 브리지 페이지를 두고 싶다면 아래처럼 패키지 페이지를 re-export 하면 됩니다.
+`php artisan orbit:frontend-sync`가 호스트 `resources/js/pages/announcement/*.tsx` 브리지를 생성합니다. 커스터마이징이 필요할 때만 아래처럼 직접 re-export 하세요.
 
 ```tsx
 export { default } from '@cms-orbit/announcement/pages/announcement/index';
