@@ -13,6 +13,11 @@
 - README **호스트 설정** 표를 추가해 `orbit:frontend-sync`로 Inertia/Vite 연결을 자동화할 수 있음을 명시했습니다.
 - README에 Laravel Boost 연동(`boost:install` 최초 1회, 이후 `orbit:install`/`orbit:sync` 자동 갱신)과 설치 버전(`^4.0`)을 정리했습니다.
 - `cms-orbit/core` `4.0.0` 정식 릴리스에 맞춰 의존성을 정렬했습니다.
+- 패키지 한글팩이 PHP `__()` 경로에서도 안정적으로 로드되도록 번역 경로 등록 시점을 `register()`로 앞당겼습니다.
+
+### 수정
+
+- 코어 부트 단계에서 번역 캐시가 먼저 고정되면서 공지 관리자 문구가 영어로 남을 수 있던 문제를 수정했습니다.
 
 ## 4.0.0-beta4 - 2026-07-04
 
