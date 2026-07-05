@@ -15,11 +15,20 @@
 ## 설치
 
 ```bash
-composer require cms-orbit/announcement:^4.0@beta
+composer require cms-orbit/announcement:^4.0
 php artisan migrate
+php artisan orbit:frontend-sync   # orbit:install 직후라면 생략 가능
+npm run dev                       # 공개 Inertia 페이지 개발 시
 ```
 
-패키지는 `cms-orbit/core`를 의존하며, 설치 시 문서 섹션과 엔티티 등록을 함께 연결합니다.
+`cms-orbit/core`가 먼저 설치·설정(`orbit:install`)되어 있어야 합니다.
+
+## Laravel Boost
+
+이 패키지는 `resources/boost/guidelines/announcement.md`, `resources/boost/skills/announcement-development/`를 제공합니다.
+
+- Boost **최초 설정**: 호스트에서 `php artisan boost:install` 1회
+- **이후**: `orbit:install` / `orbit:sync`가 이 패키지를 Boost에 등록하고 `boost:update` 실행 (Boost가 이미 설정된 경우)
 
 ## 호스트 설정
 
